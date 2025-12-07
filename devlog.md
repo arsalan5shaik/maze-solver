@@ -21,3 +21,14 @@ I'll use depth-first search with backtracking, which fits naturally with Prolog'
 - Set up the project structure
 - Create the main file with basic structure
 - Implement utility predicates for accessing list elements (nth element functions)
+
+
+
+
+## 2025-12-07 4:12
+
+### Plan for This Session
+Implement predicates to:
+- Get a cell at specific row/column coordinates
+- Calculate the maze dimensions
+- This will be foundation for validation and pathfinding
