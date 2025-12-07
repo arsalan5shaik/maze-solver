@@ -43,3 +43,33 @@ valid_position(Maze, Row, Col) :-
     Row < Rows,
     Col >= 0,
     Col < Cols.
+
+
+
+% all_rows_same_length(+Maze)
+% Ensures all rows have the same length
+all_rows_same_length([]).
+all_rows_same_length([_]).
+all_rows_same_length([Row1, Row2|Rest]) :-
+    length(Row1, Len),
+    length(Row2, Len),
+    all_rows_same_length([Row2|Rest]).
+
+% valid_cell(+Cell)
+% Checks if a cell contains a valid value
+valid_cell(f).
+valid_cell(w).
+valid_cell(s).
+valid_cell(e).
+
+% all_cells_valid(+Maze)
+% Ensures all cells in the maze are valid
+all_cells_valid([]).
+all_cells_valid([Row|Rest]) :-
+    all_cells_valid_row(Row),
+    all_cells_valid(Rest).
+
+all_cells_valid_row([]).
+all_cells_valid_row([Cell|Rest]) :-
+    valid_cell(Cell),
+    all_cells_valid_row(Rest).
