@@ -171,3 +171,20 @@ valid_solution(Maze, Actions) :-
 
 
 
+% dfs(+Maze, +CurrentRow, +CurrentCol, +Visited, +PathSoFar, -FinalPath)
+% Depth-first search to find path to exit
+dfs(Maze, Row, Col, _, Path, Path) :-
+    is_exit(Maze, Row, Col), !.
+
+dfs(Maze, Row, Col, Visited, PathSoFar, FinalPath) :-
+    \+ member((Row, Col), Visited),
+    member(Action, [up, down, left, right]),
+    can_move(Maze, Row, Col, Action),
+    move(Action, Row, Col, NewRow, NewCol),
+    \+ member((NewRow, NewCol), Visited),
+    append(PathSoFar, [Action], NewPath),
+    dfs(Maze, NewRow, NewCol, [(Row, Col)|Visited], NewPath, FinalPath).
+
+
+
+
