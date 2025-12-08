@@ -50,3 +50,15 @@ Add validation for:
 - Exactly one start position (s)
 - At least one exit position (e)
 - Find and return the start position coordinates
+
+
+
+## 2025-12-07 3:32AM
+
+### Plan for This Session
+Implement  four movement actions:
+- left: decrease column
+- right: increase column
+- up: decrease row
+- down: increase row
+Each one should compute new position from current position

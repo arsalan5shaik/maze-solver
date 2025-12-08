@@ -118,3 +118,27 @@ valid_maze(Maze) :-
     count_cell_type(Maze, s, 1),
     count_cell_type(Maze, e, ExitCount),
     ExitCount > 0.
+
+
+
+% move(+Action, +Row, +Col, -NewRow, -NewCol)
+% Computes new position after performing an action
+move(left, Row, Col, Row, NewCol) :-
+    NewCol is Col - 1.
+
+move(right, Row, Col, Row, NewCol) :-
+    NewCol is Col + 1.
+
+move(up, Row, Col, NewRow, Col) :-
+    NewRow is Row - 1.
+
+move(down, Row, Col, NewRow, Col) :-
+    NewRow is Row + 1.
+
+% can_move(+Maze, +Row, +Col, +Action)
+% Checks if a move is valid (stays in bounds and not a wall)
+can_move(Maze, Row, Col, Action) :-
+    move(Action, Row, Col, NewRow, NewCol),
+    valid_position(Maze, NewRow, NewCol),
+    get_cell(Maze, NewRow, NewCol, Cell),
+    Cell \= w.
