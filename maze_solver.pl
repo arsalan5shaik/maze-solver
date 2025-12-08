@@ -142,3 +142,32 @@ can_move(Maze, Row, Col, Action) :-
     valid_position(Maze, NewRow, NewCol),
     get_cell(Maze, NewRow, NewCol, Cell),
     Cell \= w.
+
+
+
+
+
+% follow_path(+Maze, +Row, +Col, +Actions, -FinalRow, -FinalCol)
+% Follows a path of actions from a starting position
+follow_path(_, Row, Col, [], Row, Col).
+follow_path(Maze, Row, Col, [Action|Rest], FinalRow, FinalCol) :-
+    can_move(Maze, Row, Col, Action),
+    move(Action, Row, Col, NewRow, NewCol),
+    follow_path(Maze, NewRow, NewCol, Rest, FinalRow, FinalCol).
+
+% is_exit(+Maze, +Row, +Col)
+% Checks if a position is an exit
+is_exit(Maze, Row, Col) :-
+    get_cell(Maze, Row, Col, e).
+
+% valid_solution(+Maze, +Actions)
+% Checks if actions lead from start to exit
+valid_solution(Maze, Actions) :-
+    valid_maze(Maze),
+    find_start(Maze, StartRow, StartCol),
+    follow_path(Maze, StartRow, StartCol, Actions, FinalRow, FinalCol),
+    is_exit(Maze, FinalRow, FinalCol).
+
+
+
+

@@ -62,3 +62,12 @@ Implement  four movement actions:
 - up: decrease row
 - down: increase row
 Each one should compute new position from current position
+
+
+## 2025-12-08 12:01PM
+
+### Plan for This Session
+Create predicate to validate that a given list of actions:
+- Successfully navigates from start to a cell
+- Doesn't go out of bounds or hit walls
+This will be useful for the main predicate and testing
