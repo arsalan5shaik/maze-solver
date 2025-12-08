@@ -73,3 +73,48 @@ all_cells_valid_row([]).
 all_cells_valid_row([Cell|Rest]) :-
     valid_cell(Cell),
     all_cells_valid_row(Rest).
+
+
+
+
+% count_cell_type(+Maze, +CellType, -Count)
+% Counts occurrences of a specific cell type
+count_cell_type(Maze, CellType, Count) :-
+    count_cell_type_rows(Maze, CellType, 0, Count).
+
+count_cell_type_rows([], _, Count, Count).
+count_cell_type_rows([Row|Rest], CellType, Acc, Count) :-
+    count_cell_type_row(Row, CellType, 0, RowCount),
+    Acc1 is Acc + RowCount,
+    count_cell_type_rows(Rest, CellType, Acc1, Count).
+
+count_cell_type_row([], _, Count, Count).
+count_cell_type_row([Cell|Rest], CellType, Acc, Count) :-
+    (Cell = CellType -> Acc1 is Acc + 1 ; Acc1 = Acc),
+    count_cell_type_row(Rest, CellType, Acc1, Count).
+
+% find_start(+Maze, -Row, -Col)
+% Finds the coordinates of the start position
+find_start(Maze, Row, Col) :-
+    find_start_rows(Maze, 0, Row, Col).
+
+find_start_rows([Row|_], RowIdx, RowIdx, Col) :-
+    find_start_col(Row, 0, Col), !.
+find_start_rows([_|Rest], RowIdx, Row, Col) :-
+    RowIdx1 is RowIdx + 1,
+    find_start_rows(Rest, RowIdx1, Row, Col).
+
+find_start_col([s|_], ColIdx, ColIdx) :- !.
+find_start_col([_|Rest], ColIdx, Col) :-
+    ColIdx1 is ColIdx + 1,
+    find_start_col(Rest, ColIdx1, Col).
+
+% valid_maze(+Maze)
+% Complete maze validation
+valid_maze(Maze) :-
+    Maze \= [],
+    all_rows_same_length(Maze),
+    all_cells_valid(Maze),
+    count_cell_type(Maze, s, 1),
+    count_cell_type(Maze, e, ExitCount),
+    ExitCount > 0.

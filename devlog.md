@@ -40,3 +40,13 @@ Implement predicates to:
 Build the maze validation to ensure:
 - All rows have the same length (rectangular maze)
 - All cells contain valid values (f, w, s, or e)
+
+
+
+## 2025-12-08 1:28AM
+
+### Plan for This Session
+Add validation for:
+- Exactly one start position (s)
+- At least one exit position (e)
+- Find and return the start position coordinates
