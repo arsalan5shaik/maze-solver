@@ -2,10 +2,13 @@
 % By Arsalan Shaik
 % Description: Solves mazes represented as 2D lists
 
-% Main predicate - to be implemented
+
 % find_exit(+Maze, -Actions)
+% Main predicate: finds a path from start to exit
 find_exit(Maze, Actions) :-
-    write('Not yet implemented'), fail.
+    valid_maze(Maze),
+    find_start(Maze, StartRow, StartCol),
+    dfs(Maze, StartRow, StartCol, [], [], Actions).
 
 % Utility predicates for list access
 % nth0_element(+List, +Index, -Element)
