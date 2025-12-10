@@ -164,7 +164,7 @@ is_exit(Maze, Row, Col) :-
     get_cell(Maze, Row, Col, e).
 
 % valid_solution(+Maze, +Actions)
-% Checks if actions lead from start to exit
+% Checks if the actions lead from start to exit
 valid_solution(Maze, Actions) :-
     valid_maze(Maze),
     find_start(Maze, StartRow, StartCol),
