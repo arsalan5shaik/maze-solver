@@ -91,3 +91,33 @@ This should validate the maze, find the start, and run DFS.
 
 
 
+
+
+
+## 2025-12-09 10:32pm
+
+### Plan for This Session
+Test the implementation with the provided example mazes.
+Fix any bugs discovered during testing.
+
+### Testing Notes
+Testing with simple_map([[s,f,e]]) - Expected: [right, right]
+Testing with basic_map - checking various paths
+[Document any bugs found and fixes applied]
+```
+
+**Create test_runs.txt (or add to devlog):**
+```
+Test Results:
+
+1. simple_map([[s,f,e]]):
+   Query: simple_map(M), find_exit(M, A).
+   Expected: [right, right]
+   Result: [document actual result]
+
+2. basic_map (from example.pl):
+   [document results]
+
+3. Generated maze test:
+   gen_map(4, 10, 10, M), find_exit(M, A).
+   [document results]
